@@ -1,15 +1,54 @@
-// Number of rounds
-let roundNum = +prompt("Enter number of rounds: ");
+
+const enterRoundNumber = document.querySelector('.enter-choice');
+const btnRock = document.querySelector('.rock-button');
+const btnPaper = document.querySelector('.paper-button');
+const btnScissors = document.querySelector('.scissors-button');
+const btnSelector = document.querySelector('.button-selector');
+const choiceOutput = document.querySelector('.win-output');
+const choices = document.querySelector('.computer-choice');
+const winnerAnnounce = document.querySelector('.winner-announcer');
+let playerChoice;
+
+btnRock.addEventListener ('click', () => {
+    playerChoice = 'rock';
+    console.log(playerChoice);
+    playFullGame();
+    choices.textContent = gameScore;
+    if (gameScore >= 5) {
+        winnerAnnounce.textContent = "You are the Winner";
+    } else if (gameScore <= -5) {
+        winnerAnnounce.textContent = "The computer is the Winner";
+    }
+});
+
+btnPaper.addEventListener ('click', () => {
+    playerChoice = 'paper';
+    console.log(playerChoice);
+    playFullGame();
+    choices.textContent = gameScore;
+    if (gameScore >= 5) {
+        winnerAnnounce.textContent = "You are the Winner";
+    } else if (gameScore <= -5) {
+        winnerAnnounce.textContent = "The computer is the Winner";
+    }
+});
+
+btnScissors.addEventListener ('click', () => {
+    playerChoice = 'scissors';
+    console.log(playerChoice);
+    playFullGame();
+    choices.textContent = gameScore;
+    if (gameScore >= 5) {
+        winnerAnnounce.textContent = "You are the Winner";
+    } else if (gameScore <= -5) {
+        winnerAnnounce.textContent = "The computer is the Winner";
+    }
+});
 
 let computerChoice;
 
 // Game score
 let gameScore = 0;
-
-// Play entire game and print score
-console.log(playFullGame());
-console.log(gameScore);
-
 
 // Get computer choice
 function getComputerChoice() {
@@ -33,26 +72,26 @@ function playGame (playerSelection, computerSelection) {
     if (playerSelection == "rock" || 
         playerSelection == "paper" || 
         playerSelection == "scissors" ) {
-        // If correspondant compare both choices
+        // If correspondent compare both choices
         if (playerSelection == computerSelection) {
-            console.log("It's a tie");
+            choiceOutput.textContent = "It\'s a tie\n You chose " + playerSelection + " and the computer chose " + computerSelection;
         } else if (playerSelection == "rock" && computerSelection == "paper") {
-            console.log("You loose");
+            choiceOutput.textContent = "You loose\n You chose " + playerSelection + " and the computer chose " + computerSelection;
             gameScore -= 1;
         } else if (playerSelection == "paper" && computerSelection == "scissors") {
-            console.log("You loose");
+            choiceOutput.textContent = "You loose\n You chose " + playerSelection + " and the computer chose " + computerSelection;
             gameScore -= 1;
         } else if (playerSelection == "scissors" && computerSelection == "rock") {
-            console.log("You loose");
+            choiceOutput.textContent = "You loose\n You chose " + playerSelection + " and the computer chose " + computerSelection;
             gameScore -= 1;
         } else if (playerSelection == "rock" && computerSelection == "scissors") {
-            console.log("You win");
+            choiceOutput.textContent = "You win\n You chose " + playerSelection + " and the computer chose " + computerSelection;
             gameScore += 1;
         } else if (playerSelection == "paper" && computerSelection == "rock") {
-            console.log("You win");
+            choiceOutput.textContent = "You win\n You chose " + playerSelection + " and the computer chose " + computerSelection;
             gameScore += 1;
         } else if (playerSelection == "scissors" && computerSelection == "paper") {
-            console.log("You win");
+            choiceOutput.textContent = "You win\n You chose " + playerSelection + " and the computer chose " + computerSelection;
             gameScore += 1;
         }
     } else {
@@ -61,16 +100,7 @@ function playGame (playerSelection, computerSelection) {
 }
 
 function playFullGame() {
-    // Do a loop that plays a round until the number of rounds selected
 
-    // Each round ask for an option from both contenders
-
-    for (let i = 0; i < roundNum; i++) {
-        // Get player's choice
-        let playerChoice = prompt("Choose Rock, Paper or Scissors: ");
-        playerChoice = playerChoice.toLowerCase();
-
-        // Get computer's choice
         let computerChoice = getComputerChoice();
 
         console.log("Computer's choice: " + computerChoice);
@@ -78,5 +108,4 @@ function playFullGame() {
 
         // Start the round function
         playGame(playerChoice, computerChoice);
-    }
 }
